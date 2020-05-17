@@ -2,17 +2,18 @@
 
 開啟舌尖上的旅行😊
 
-一個頁面，用來學習 的基礎知識。
+一個頁面可以增刪查改的頁面，用來學習運用mongoose操作mongoDB的基礎知識。
 
 * 畫面
-<div align=center><img width="750" src=""></div>
+<div align=center><img width="750" src="https://i.imgur.com/jMZGG3W.jpg"></div>
 
 ## Features - 特色功能
 
-1. 使用者能
-2. 使用者能
-3. 使用者能
-4. 使用者能
+1. 使用者能瀏覽全部餐廳資訊
+2. 使用者能新增一筆餐廳資訊
+3. 使用者能刪除一筆餐廳資訊
+4. 使用者能查閱一筆餐廳資訊
+5. 使用者能修改一筆餐廳資訊
 
 
 ## Prerequisites - 環境建置與需求
@@ -21,6 +22,8 @@
 - Express: v4.17.1
 - Express-Handlebars: v4.0.4
 - body-parser: v1.19.0
+- mongoose: 5.9.14
+
 
 ## Installing - 安裝流程
 
