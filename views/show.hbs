@@ -33,7 +33,7 @@ justify-content-center align-items-center" id="wrapper">
         {{restaurant.phone}}
       </p>
 
-      <p class="mb-5 description">
+      <p class="mt-2 mb-5 description">
         {{restaurant.description}}
       </p>
     </div>
@@ -43,7 +43,7 @@ justify-content-center align-items-center" id="wrapper">
     <a type="button" class="btn btn-secondary mb-4" href="/restaurants/{{restaurant._id}}/edit">編輯</a>
     <a href="/" class="btn btn-secondary mb-4" type="button">返回</a>
     <form action="/restaurants/{{restaurant._id}}/delete" method="POST" style="display: inline;">
-      <button type="submit" class="btn btn-secondary mb-4">delete</button>
+      <button type="submit" class="btn btn-secondary mb-4">刪除</button>
     </form>
   </div>
 

@@ -51,28 +51,33 @@ app.get('/restaurants/new', (req, res) => {
 //在資料庫新增資料的路由
 app.post('/restaurants', (req, res) => {
   console.log(req.body)
-  const name = req.body.name
-  const nameEn = req.body.name_en
-  const category = req.body.category
-  const image = req.body.image
-  const location = req.body.location
-  const phone = req.body.phone
-  const googleMap = req.body.google_map
-  const rating = req.body.rating
-  const description = req.body.description
-  return Restaurant.create({
-    name,
-    nameEn,
-    category,
-    image,
-    location,
-    phone,
-    googleMap,
-    rating,
-    description,
-  })
-    .then(() => res.redirect('/'))
-    .catch((error) => console.log(error))
+  // const name = req.body.name
+  // const nameEn = req.body.name_en
+  // const category = req.body.category
+  // const image = req.body.image
+  // const location = req.body.location
+  // const phone = req.body.phone
+  // const googleMap = req.body.google_map
+  // const rating = req.body.rating
+  // const description = req.body.description
+  // return Restaurant.create({
+  //   name,
+  //   nameEn,
+  //   category,
+  //   image,
+  //   location,
+  //   phone,
+  //   googleMap,
+  //   rating,
+  //   description,
+  // })
+  if(!req.body.image.length){
+    req.body.image='https://static.vecteezy.com/system/resources/previews/000/091/119/large_2x/free-restaurant-logo-on-paper-plate-vector.jpg'
+  }
+    const restaurant = req.body
+    return Restaurant.create(restaurant)
+      .then(() => res.redirect('/'))
+      .catch((error) => console.log(error))
 })
 
 //設動態路由，查看特定餐廳詳情
@@ -131,4 +136,21 @@ app.post('/restaurants/:id/delete', (req, res) => {
     .then((restaurant) => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch((error) => console.log(error))
+})
+
+//搜尋功能
+app.get('/search', (req, res) => {
+  console.log(req.query)
+  const keyword = req.query.keyword
+  Restaurant.find()
+    .lean()
+    .then(restaurants => {
+      return restaurants.filter(restaurant =>
+        restaurant.name.toLowerCase().includes(keyword)
+        || restaurant.name_en.toLowerCase().includes(keyword)
+        || restaurant.category.toLowerCase().includes(keyword)
+      )
+    })
+    .then(restaurants => res.render('index', { restaurants, keyword }))
+    .catch(error => console.log(error))
 })
