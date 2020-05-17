@@ -37,7 +37,7 @@ git clone https://github.com/Carrot7712/FoodAdvisor_CURD.git
 2. Access the directory
 
 ```
-cd FoodAdvisor
+cd FoodAdvisor_CURD
 ```
 
 3. Intall npm 
