@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC&family=Oswald:wght@500&family=Satisfy&display=swap');
 .search-bar,
 #data-panel .card,
-.restaurant-detail {
+.restaurant-detail,#create {
   font-family: 'Noto Serif TC', serif;
 }
 a{
