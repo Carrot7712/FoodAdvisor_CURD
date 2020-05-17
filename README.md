@@ -24,6 +24,7 @@
 - Express-Handlebars: v4.0.4
 - body-parser: v1.19.0
 - mongoose: 5.9.14
+- mongoDB Community Server: 4.2.6
 
 
 ## Installing - 安裝流程
