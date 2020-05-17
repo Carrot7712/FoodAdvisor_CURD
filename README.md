@@ -31,7 +31,7 @@
 1. Open the terminal and clone our project
 
 ```
-git clone 
+git clone https://github.com/Carrot7712/FoodAdvisor_CURD.git
 ```
 
 2. Access the directory
@@ -46,13 +46,13 @@ cd FoodAdvisor
 npm install 
 ```
 
-4. Intall nodemon
+4. Requrie seed
 
 ```
-npm install nodemon
+npm run seed
 ```
 
-5. Run the project
+5. Execute the project
 ```
 npm run dev
 ```
