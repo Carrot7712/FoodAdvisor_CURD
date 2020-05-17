@@ -5,6 +5,7 @@
 一個頁面可以增刪查改的頁面，用來學習運用mongoose操作mongoDB的基礎知識。
 
 * 畫面
+<div align=center><img width="750" src="https://i.imgur.com/xdRiBtt.jpg"></div>
 <div align=center><img width="750" src="https://i.imgur.com/jMZGG3W.jpg"></div>
 
 ## Features - 特色功能
