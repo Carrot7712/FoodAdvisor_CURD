@@ -75,19 +75,60 @@ app.post('/restaurants', (req, res) => {
     .catch((error) => console.log(error))
 })
 
-app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurant = restaurantList.results.find(
-    (restaurant) => restaurant.id.toString() === req.params.restaurant_id
-  )
-  res.render('show', { restaurant: restaurant })
+//設動態路由，查看特定餐廳詳情
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then((restaurant) => res.render('show', { restaurant }))
+    .catch((error) => console.log(error))
 })
-app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
-  const restaurants = restaurantList.results.filter((restaurant) => {
-    return (
-      restaurant.name.toLowerCase().includes(keyword.toLowerCase()) ||
-      restaurant.category.toLowerCase().includes(keyword.toLowerCase())
-    )
-  })
-  res.render('index', { restaurants: restaurants })
+
+//前往編輯頁面的路由
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then((restaurant) => res.render('edit', { restaurant }))
+    .catch((error) => console.log(error))
+})
+
+//資料從表單回傳後，更新資料庫
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  const name = req.body.name
+  const nameEn = req.body.name_en
+  const category = req.body.category
+  const image = req.body.image
+  const location = req.body.location
+  const phone = req.body.phone
+  const googleMap = req.body.google_map
+  const rating = req.body.rating
+  const description = req.body.description
+  return Restaurant.findById(id)
+      //如果查詢成功，幫我儲存資料
+      .then((restaurant) => {
+        restaurant.name = name
+        restaurant.nameEn = nameEn
+        restaurant.category = category
+        restaurant.image = image
+        restaurant.location = location
+        restaurant.phone = phone
+        restaurant.googleMap = googleMap
+        restaurant.rating = rating
+        restaurant.description = description
+        return restaurant.save()
+      })
+      //如果儲存成功，重新導向那筆的詳細頁面
+      .then(() => res.redirect(`/restaurants/${id}`))
+      .catch((error) => console.log(error))
+})
+
+//去資料庫刪除資料
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .then((restaurant) => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch((error) => console.log(error))
 })

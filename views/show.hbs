@@ -1,9 +1,9 @@
 <h1 class="mb-1 restaurant-show-title">{{restaurant.name_en}}</h1>
-<div class="container restaurant-detail" id="wrapper">
+<div class="container restaurant-detail d-flex flex-column 
+justify-content-center align-items-center" id="wrapper">
   <div class="row">
     <div class="col-12 col-md-3 mx-auto">
-      <img class=" mb-4 w-100 shadow" src={{restaurant.image}} alt="{{restaurant.name_en}}"
-        style="max-width: 600px;">
+      <img class=" mb-4 w-100 shadow" src={{restaurant.image}} alt="{{restaurant.name_en}}" style="max-width: 600px;">
     </div>
     <div class="col-12 col-md-8 mx-auto">
       <p class="mb-1">
@@ -37,5 +37,14 @@
         {{restaurant.description}}
       </p>
     </div>
+
   </div>
+  <div class="buttons">
+    <a type="button" class="btn btn-secondary mb-4" href="/restaurants/{{restaurant._id}}/edit">編輯</a>
+    <a href="/" class="btn btn-secondary mb-4" type="button">返回</a>
+    <form action="/restaurants/{{restaurant._id}}/delete" method="POST" style="display: inline;">
+      <button type="submit" class="btn btn-secondary mb-4">delete</button>
+    </form>
+  </div>
+
 </div>
